@@ -4,6 +4,7 @@ import kuit.server.common.exception.UserException;
 import kuit.server.common.response.BaseResponse;
 import kuit.server.dto.user.*;
 import kuit.server.service.UserService;
+import kuit.server.util.BindingResultUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import static kuit.server.util.BindingResultUtils.getErrorMessages;
 @RequestMapping("/users")
 public class UserController {
 
+    // 의존관계 주입
     private final UserService userService;
 
     /**
@@ -29,6 +31,7 @@ public class UserController {
      */
     @PostMapping("")
     public BaseResponse<PostUserResponse> signUp(@Validated @RequestBody PostUserRequest postUserRequest, BindingResult bindingResult) {
+        // 검증 오류 발생 시 bindingResult로 반환됨
         log.info("[UserController.signUp]");
         if (bindingResult.hasErrors()) {
             throw new UserException(INVALID_USER_VALUE, getErrorMessages(bindingResult));
