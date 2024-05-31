@@ -68,6 +68,7 @@ public class UserService {
     public void modifyNickname(long userId, String nickname) {
         log.info("[UserService.modifyNickname]");
 
+        // 닉네임 중복 검증
         validateNickname(nickname);
         int affectedRows = userDao.modifyNickname(userId, nickname);
         if (affectedRows != 1) {
