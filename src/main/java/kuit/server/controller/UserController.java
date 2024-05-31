@@ -74,6 +74,20 @@ public class UserController {
     }
 
     /**
+     * 닉네임 변경
+     */
+    @PutMapping("/{userId}")
+    public BaseResponse<String> modifyUserInfo(@PathVariable long userId,
+                                               @Validated @RequestBody PutUserRequest putUserRequest, BindingResult bindingResult) {
+        log.info("[UserController.modifyNickname]");
+        if (bindingResult.hasErrors()) {
+            throw new UserException(INVALID_USER_VALUE, getErrorMessages(bindingResult));
+        }
+        userService.modifyUserInfo(userId, putUserRequest.getEmail(),putUserRequest.getPhoneNumber(),putUserRequest.getNickname(),putUserRequest.getStatus());
+        return new BaseResponse<>(null);
+    }
+
+    /**
      * 회원 목록 조회
      */
     @GetMapping("")

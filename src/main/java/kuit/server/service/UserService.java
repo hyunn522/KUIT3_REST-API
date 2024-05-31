@@ -76,6 +76,17 @@ public class UserService {
         }
     }
 
+    public void modifyUserInfo(long userId, String email, String phoneNumber, String nickname, String status) {
+        log.info("[UserService.modifyUserInfo]");
+
+        validateEmail(email);
+        validateNickname(nickname);
+        int affectedRow = userDao.modifyUserInfo(userId, email, phoneNumber, nickname, status);
+        if (affectedRow != 1) {
+            throw new UserException(DATABASE_ERROR);
+        }
+    }
+
     public List<GetUserResponse> getUsers(String nickname, String email, String status) {
         log.info("[UserService.getUsers]");
         return userDao.getUsers(nickname, email, status);
