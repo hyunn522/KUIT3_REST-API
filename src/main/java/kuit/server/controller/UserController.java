@@ -88,4 +88,13 @@ public class UserController {
         return new BaseResponse<>(userService.getUsers(nickname, email, status));
     }
 
+    /**
+     * id로 회원 조회
+     */
+    @GetMapping("/{userId}")
+    public BaseResponse<GetUserResponse> getUserByID(@PathVariable long userId) {
+        log.info("[UserController.getUserById]");
+        return new BaseResponse<>(userService.getUserById(userId));
+    }
+
 }

@@ -80,6 +80,11 @@ public class UserService {
         return userDao.getUsers(nickname, email, status);
     }
 
+    public GetUserResponse getUserById(long userId) {
+        log.info("[UserService.getUserById]");
+        return userDao.getUserById(userId);
+    }
+
     private void validateEmail(String email) {
         if (userDao.hasDuplicateEmail(email)) {
             throw new UserException(DUPLICATE_EMAIL);

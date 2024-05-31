@@ -90,6 +90,17 @@ public class UserDao {
         );
     }
 
+    public GetUserResponse getUserById(long userId) {
+        String sql = "select email, phone_number, nickname, status from user where user_id=:user_id";
+        Map<String, Object> param = Map.of("user_id", userId);
+        return jdbcTemplate.queryForObject(sql, param, (rs, rn) -> new GetUserResponse(
+                rs.getString("email"),
+                rs.getString("phone_number"),
+                rs.getString("nickname"),
+                rs.getString("status")
+        ));
+    }
+
     public long getUserIdByEmail(String email) {
         String sql = "select user_id from user where email=:email and status='active'";
         Map<String, Object> param = Map.of("email", email);
