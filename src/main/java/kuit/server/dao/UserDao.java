@@ -38,7 +38,7 @@ public class UserDao {
     }
 
     public long createUser(PostUserRequest postUserRequest) {
-        String sql = "insert into user(email, password, phone_number, nickname) " +
+        String sql = "insert into User(email, password, phone_number, nickname) " +
                 "values(:email, :password, :phoneNumber, :nickname)";
 
         SqlParameterSource param = new BeanPropertySqlParameterSource(postUserRequest);
