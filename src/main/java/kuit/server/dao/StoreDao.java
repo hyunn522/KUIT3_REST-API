@@ -23,7 +23,7 @@ public class StoreDao {
     }
 
     public GetCategoriesResponse getCategories() {
-        String sql = "select distinct category from store";
+        String sql = "select distinct category from Store";
         Map<String, Object> params = new HashMap<>(); // Empty map (no parameters)
         List<String> categories = jdbcTemplate.queryForList(sql, params, String.class);
         return new GetCategoriesResponse(categories);

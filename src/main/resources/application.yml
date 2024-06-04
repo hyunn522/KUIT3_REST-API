@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: "dev"
+    active: "local"
     group:
       "local": "localDB, devPort, secret, web-mvc"
       "dev": "devDB, devPort, secret, web-mvc"
